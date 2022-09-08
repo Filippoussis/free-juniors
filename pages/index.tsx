@@ -1,19 +1,20 @@
 import type { NextPage } from 'next';
 
-import { Container, Stack, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import DoughnutChart from '../components/DoughnutChart/DoughnutChart';
 
 const Home: NextPage = () => {
   return (
     <Container
-      maxWidth='lg'
+      maxWidth={false}
       sx={{
         height: '100vh',
         backgroundImage: 'linear-gradient(to top, #dfe9f3 0%, white 100%)',
       }}
     >
       <Stack
-        spacing={4}
+        height='100%'
+        justifyContent='space-evenly'
         alignItems='center'
       >
         <Typography
@@ -25,6 +26,10 @@ const Home: NextPage = () => {
         <Container maxWidth='sm'>
           <DoughnutChart />
         </Container>
+        <Stack direction={{ sm: 'row' }} spacing={{ xs: 4}}>
+          <Button variant='outlined'>Я Джуниор</Button>
+          <Button variant='outlined'>Я Наниматель</Button>
+        </Stack>
       </Stack>
     </Container>
   );
