@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { supabase } from '../utils/supabaseClient';
 
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
@@ -9,6 +10,16 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Home: NextPage = () => {
+  async function signInWithGithub() {
+    const { user, session, error } = await supabase.auth.signIn({
+      provider: 'github',
+    });
+  }
+
+  async function signout() {
+    const { error } = await supabase.auth.signOut();
+  }
+
   return (
     <Container
       maxWidth={false}
@@ -37,8 +48,18 @@ const Home: NextPage = () => {
           direction={{ sm: 'row' }}
           spacing={{ xs: 4 }}
         >
-          <Button variant='outlined'>Я Джуниор</Button>
-          <Button variant='outlined'>Я Наниматель</Button>
+          <Button
+            variant='outlined'
+            onClick={signInWithGithub}
+          >
+            Я Джуниор
+          </Button>
+          <Button
+            variant='outlined'
+            onClick={signout}
+          >
+            Я Наниматель
+          </Button>
         </Stack>
       </Stack>
     </Container>
