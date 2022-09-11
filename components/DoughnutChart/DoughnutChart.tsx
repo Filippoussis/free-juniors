@@ -67,6 +67,13 @@ const DoughnutChart = () => (
   <Doughnut
     data={data}
     plugins={[legendMargin, textCenter]}
+    options={{
+      plugins: {
+        legend: {
+          onClick() {},
+        },
+      },
+    }}
   />
 );
 
