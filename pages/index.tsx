@@ -1,7 +1,12 @@
 import type { NextPage } from 'next';
 
-import { Button, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+
 import DoughnutChart from '../components/DoughnutChart/DoughnutChart';
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 const Home: NextPage = () => {
   return (
@@ -17,16 +22,21 @@ const Home: NextPage = () => {
         justifyContent='space-evenly'
         alignItems='center'
       >
-        <Typography
-          variant='h1'
-          align='center'
-        >
-          Free Juniors
-        </Typography>
-        <Container maxWidth='sm'>
+        <ThemeProvider theme={theme}>
+          <Typography
+            variant='h1'
+            align='center'
+          >
+            Free Juniors
+          </Typography>
+        </ThemeProvider>
+        <Box width={{ xs: '300px', sm: '600px' }}>
           <DoughnutChart />
-        </Container>
-        <Stack direction={{ sm: 'row' }} spacing={{ xs: 4}}>
+        </Box>
+        <Stack
+          direction={{ sm: 'row' }}
+          spacing={{ xs: 4 }}
+        >
           <Button variant='outlined'>Я Джуниор</Button>
           <Button variant='outlined'>Я Наниматель</Button>
         </Stack>
